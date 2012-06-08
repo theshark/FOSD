@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Export to Prolog"
+            id="ExportPrologView">
+      </category>
+      <view
+            name="Export to Prolog"
+            icon="icons/sample.gif"
+            category="ExportPrologView"
+            class="net.java.amateras.ExportPrologView.views.ExportPrologView"
+            id="net.java.amateras.ExportPrologView.views.ExportPrologView.views.ExportPrologView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.TaskList"
+               relationship="right"
+               id="net.java.amateras.ExportPrologView.views.ExportPrologView.views.ExportPrologView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+   <extension
+         id="command1"
+         name="command1"
+         point="org.eclipse.ui.commands">
+      <command
+            category="ExportPrologView"
+            defaultHandler="org.eclipse.ui.internal.handlers.NewEditorHandler"
+            id="net.java.amateras.ExportPrologView.command1"
+            name="name">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Prolog Config"
+            visible="true"
+            id="net.java.amateras.ExportPrologView.actionSet">
+         <menu
+               label="Prolog"
+               id="prologMenu">
+            <separator
+                  name="prologGroup">
+            </separator>
+         </menu>
+         <action
+               label="&amp;Configure Prolog Path"
+               icon="icons/sample.gif"
+               class="net.java.amateras.ExportPrologView.PrologConfigure"
+               tooltip="Configure Prolog path"
+               menubarPath="prologMenu/prologGroup"
+               toolbarPath="prologGroup"
+               id="net.java.amateras.ExportPrologView.PrologConfigure">
+         </action>
+      </actionSet>
+   </extension>
+
+</plugin>

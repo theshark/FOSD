@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="net.java.amateras.umleditor.ExportEcore.editorPopupMenuContribution"
+            targetID="net.java.amateras.uml.classdiagram.ClassDiagramEditor.EditorContext">
+         <menu
+               id="net.java.amateras.uml.ExportEcore.menu"
+               label="%plugin.menu"
+               path="generate">
+            <separator name="ExportEcore"/>
+         </menu>
+         <action
+               class="net.java.amateras.uml.ExportEcore.popup.actions.EcoreExportAction"
+               icon="icons/export.gif"
+               id="net.java.amateras.uml.ExportEcore.export"
+               label="%plugin.menu.export"
+               menubarPath="net.java.amateras.uml.ExportEcore.menu/ExportEcore"/>
+      </viewerContribution>
+   </extension>
+</plugin>
