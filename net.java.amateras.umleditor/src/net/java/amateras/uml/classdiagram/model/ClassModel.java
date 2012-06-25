@@ -133,8 +133,33 @@ public class ClassModel extends CommonEntityModel {
 					fields.add(((AttributeModel) child).getName());
 				}
 			}
+			
+			addAllParentAttributes(this);
+
 		}
 		return super.getPropertyValue(id);
+	}
+	
+	//Recursively add all inherited attributes to current class' fields
+	private void addAllParentAttributes (ClassModel model) {
+		List<AbstractUMLConnectionModel> sources = model.getModelSourceConnections();
+		for (int i = 0; i < sources.size(); i++) {
+			AbstractUMLConnectionModel acm = sources.get(i);
+			if (acm instanceof GeneralizationModel) {
+				List<AbstractUMLModel> parents = acm.getTarget().getChildren();
+				for (int j = 0; j < parents.size(); j++) {
+					AbstractUMLModel attribute = parents.get(j);
+					if (attribute instanceof AttributeModel) {
+						fields.add(((AttributeModel) attribute).getName());
+					}
+				}
+				
+				if (acm.getTarget() instanceof ClassModel) {
+					addAllParentAttributes((ClassModel)acm.getTarget());
+				}
+		
+			}
+		}
 	}
 
 	public boolean isPropertySet(Object id) {
