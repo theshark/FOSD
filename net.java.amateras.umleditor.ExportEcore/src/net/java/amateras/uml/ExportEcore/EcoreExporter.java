@@ -207,11 +207,15 @@ public class EcoreExporter {
 			}
 		}
 
-		if(!found) {
-			MessageDialog.openError(new Shell(), "Error", "Label " +model.getSzLabel() + " is not an attribute of " + getName(model));
-			this.valid = false;
-			return;
-		}
+		/*
+		 * For now, just ignore this, since the label may a parent's attribute
+		 * We can modify this to check for parents' attributes if we need to
+		 if(!found) {
+		 MessageDialog.openError(new Shell(), "Error", "Label " +model.getSzLabel() + " is not an attribute of " + getName(model));
+		 this.valid = false;
+		 return;
+		 }
+		 */
 
 		eclass.getEAnnotations().add(annot);
 
